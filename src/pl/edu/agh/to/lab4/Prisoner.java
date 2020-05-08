@@ -25,11 +25,11 @@ public class Prisoner {
         return pesel;
     }
 
-    public boolean czyMoglbyEwentualnieBycPodejrzany() {
+    public boolean canBeSuspect() {
         return judgementYear + senteceDuration >= getCurrentYear();
     }
 
-    public int getCurrentYear() {
+    static public int getCurrentYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
 }
