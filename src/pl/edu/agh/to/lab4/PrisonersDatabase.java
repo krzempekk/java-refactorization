@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class PrisonersDatabase {
 
-    private final Map<String, Collection<Prisoner>> prisoners = new HashMap<String, Collection<Prisoner>>();
+    private final Map<String, Collection<Prisoner>> prisons = new HashMap<String, Collection<Prisoner>>();
 
     public PrisonersDatabase() {
         addPrisoner("Wiezienie krakowskie", new Prisoner("Jan", "Kowalski", "87080452357", 2005, 7));
@@ -21,20 +21,20 @@ public class PrisonersDatabase {
     }
 
     public Map<String, Collection<Prisoner>> findAll() {
-        return prisoners;
+        return prisons;
     }
 
     public Collection<String> getAllPrisons() {
-        return prisoners.keySet();
+        return prisons.keySet();
     }
 
     private void addPrisoner(String category, Prisoner prisoner) {
-        if (!prisoners.containsKey(category))
-            prisoners.put(category, new ArrayList<Prisoner>());
-        prisoners.get(category).add(prisoner);
+        if (!prisons.containsKey(category))
+            prisons.put(category, new ArrayList<Prisoner>());
+        prisons.get(category).add(prisoner);
     }
 
-    public static String render(Prisoner prisoner) {
+    public static String getPrisonerFullname(Prisoner prisoner) {
         return prisoner.name + " " + prisoner.surname;
     }
 }
