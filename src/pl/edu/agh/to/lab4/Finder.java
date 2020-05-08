@@ -10,41 +10,34 @@ public class Finder {
 
     private final Map<String, Collection<Prisoner>> allPrisons;
 
-    PersonDataProvider personDataProvider;
-    PrisonersDatabase prisonersDatabase;
+
+    CompositeAggregate compositeAggregate;
 
 
     public Finder(Collection<Person> allPersons, Map<String, Collection<Prisoner>> allPrisons) {
         this.allPersons = allPersons;
         this.allPrisons = allPrisons;
-        this.personDataProvider = null;
-        this.prisonersDatabase = null;
+        this.compositeAggregate = null;
     }
 
     public Finder(PersonDataProvider personDataProvider, PrisonersDatabase prisonersDatabase) {
         this(personDataProvider.getAllCracowCitizens(), prisonersDatabase.findAll());
-        this.prisonersDatabase = prisonersDatabase;
-        this.personDataProvider = personDataProvider;
+        this.compositeAggregate = new CompositeAggregate();
+        this.compositeAggregate.add(personDataProvider);
+        this.compositeAggregate.add(prisonersDatabase);
     }
 
     public void displayAllSuspectsWithName(String name) {
         ArrayList<Suspect> suspectedPeople = new ArrayList<Suspect>();
 
-        for (Iterator<Suspect> it = personDataProvider.iterator(); it.hasNext();) {
-            Suspect person = it.next();
-            if (person.canBeSuspect() && person.getFirstName().equals(name)) {
-                suspectedPeople.add(person);
-            }
-        }
 
-        for (Iterator<Suspect> it = prisonersDatabase.iterator(); it.hasNext();) {
+        for (Iterator<Suspect> it = compositeAggregate.iterator(); it.hasNext();) {
             Suspect prisoner = it.next();
             if (!prisoner.canBeSuspect() && prisoner.getFirstName().equals(name)) {
                 suspectedPeople.add(prisoner);
             }
         }
-
-
+        
         System.out.println("Znalazlem " + suspectedPeople.size() + " pasujacych podejrzanych!");
 
         for (Suspect suspect: suspectedPeople) {
