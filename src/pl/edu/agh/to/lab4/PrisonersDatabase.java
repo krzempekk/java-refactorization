@@ -1,13 +1,10 @@
 package pl.edu.agh.to.lab4;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PrisonersDatabase {
 
-    private final Map<String, Collection<Prisoner>> prisons = new HashMap<String, Collection<Prisoner>>();
+    private final Map<String, Collection<Prisoner>> prisons = new HashMap<>();
 
     public PrisonersDatabase() {
         addPrisoner("Wiezienie krakowskie", new Prisoner("Jan", "Kowalski", "87080452357", 2005, 7));
@@ -30,8 +27,11 @@ public class PrisonersDatabase {
 
     private void addPrisoner(String category, Prisoner prisoner) {
         if (!prisons.containsKey(category))
-            prisons.put(category, new ArrayList<Prisoner>());
+            prisons.put(category, new ArrayList<>());
         prisons.get(category).add(prisoner);
     }
 
+    public Iterator<Suspect> iterator() {
+        return new FlatIterator(this.prisons);
+    }
 }

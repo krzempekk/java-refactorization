@@ -1,5 +1,6 @@
 package pl.edu.agh.to.lab4;
 
+<<<<<<< HEAD
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -18,4 +19,10 @@ public class SuspectAggregate {
         
 
     }
+=======
+import java.util.Iterator;
+
+public interface SuspectAggregate {
+    Iterator<Suspect> iterator();
+>>>>>>> 81eccf0ce55becd4591ed9fefc86a3172cd1ab7d
 }
