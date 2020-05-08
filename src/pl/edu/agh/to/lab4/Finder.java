@@ -38,7 +38,7 @@ public class Finder {
 
         if (suspectedPrisoners.size() < 10) {
             for (Person person : allPersons) {
-                if (person.getAge() > 18 && person.firstname().equals(name)) {
+                if (person.getAge() > 18 && person.getFirstname().equals(name)) {
                     suspectedPersons.add(person);
                 }
                 if (suspectedPrisoners.size() + suspectedPersons.size() >= 10) {
@@ -55,7 +55,7 @@ public class Finder {
         }
 
         for (Person p : suspectedPersons) {
-            System.out.println(p.display());
+            System.out.println(p.getFullname());
         }
     }
 }
