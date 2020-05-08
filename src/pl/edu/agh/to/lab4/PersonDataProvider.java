@@ -1,8 +1,6 @@
 package pl.edu.agh.to.lab4;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
 public class PersonDataProvider implements SuspectAggregate {
 
