@@ -9,7 +9,6 @@ public class Prisoner extends Suspect {
 
     private final String pesel;
 
-
     public Prisoner(String name, String surname, String pesel, int judgementYear, int sentenceDuration) {
         super(name, surname, 0);
         this.pesel = pesel;
@@ -24,8 +23,6 @@ public class Prisoner extends Suspect {
     public boolean canBeSuspect() {
         return judgementYear + senteceDuration >= getCurrentYear();
     }
-
-    public String getFullname() { return super.getFullName(); }
 
     static public int getCurrentYear() {
         return Calendar.getInstance().get(Calendar.YEAR);

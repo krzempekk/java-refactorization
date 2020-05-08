@@ -1,9 +1,6 @@
 package pl.edu.agh.to.lab4;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PrisonersDatabase {
 
@@ -32,6 +29,10 @@ public class PrisonersDatabase {
         if (!prisons.containsKey(category))
             prisons.put(category, new ArrayList<Prisoner>());
         prisons.get(category).add(prisoner);
+    }
+
+    public Iterator<Suspect> iterator() {
+        return null;
     }
 
 }

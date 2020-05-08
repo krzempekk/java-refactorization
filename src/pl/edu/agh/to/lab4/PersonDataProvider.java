@@ -2,6 +2,7 @@ package pl.edu.agh.to.lab4;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class PersonDataProvider {
 
@@ -23,5 +24,9 @@ public class PersonDataProvider {
 
     public Collection<Person> getAllCracowCitizens() {
         return cracowCitizens;
+    }
+
+    public Iterator<Suspect> iterator() {
+        return null;
     }
 }
