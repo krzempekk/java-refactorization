@@ -31,7 +31,7 @@ public class Finder {
         }
 
         for (Person person : allPersons) {
-            if (person.getAge() > 18 && person.getFirstname().equals(name)) {
+            if (person.getAge() > 18 && person.getFirstName().equals(name)) {
                 suspectedPersons.add(person);
             }
         }
@@ -40,11 +40,11 @@ public class Finder {
         System.out.println("Znalazlem " + suspectsCount + " pasujacych podejrzanych!");
 
         for (Prisoner prisoner: suspectedPrisoners) {
-            System.out.println(prisoner.getFullname());
+            System.out.println(prisoner.getFullName());
         }
 
         for (Person person: suspectedPersons) {
-            System.out.println(person.getFullname());
+            System.out.println(person.getFullName());
         }
     }
 }

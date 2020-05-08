@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class PersonDataProvider {
 
-    private final Collection<Person> cracowCitizens = new ArrayList<Person>();
+    private final Collection<Person> cracowCitizens = new ArrayList<>();
 
     public PersonDataProvider() {
         cracowCitizens.add(new Person("Jan", "Kowalski", 30));
@@ -26,7 +26,7 @@ public class PersonDataProvider {
         return cracowCitizens;
     }
 
-    public Iterator<Suspect> iterator() {
-        return null;
-    }
+//    public Iterator<Suspect> iterator() {
+//        return cracowCitizens.iterator();
+//    }
 }
