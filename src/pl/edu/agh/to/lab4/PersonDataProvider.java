@@ -1,8 +1,6 @@
 package pl.edu.agh.to.lab4;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
 public class PersonDataProvider {
 
@@ -26,7 +24,7 @@ public class PersonDataProvider {
         return cracowCitizens;
     }
 
-//    public Iterator<Suspect> iterator() {
-//        return cracowCitizens.iterator();
-//    }
+    public Iterator<Suspect> iterator() {
+        return new ArrayList<Suspect>(this.cracowCitizens).iterator();
+    }
 }
