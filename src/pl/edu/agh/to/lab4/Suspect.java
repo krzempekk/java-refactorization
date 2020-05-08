@@ -38,4 +38,8 @@ public abstract class Suspect {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public boolean canBeSuspect() {
+        return age >= 18;
+    }
 }

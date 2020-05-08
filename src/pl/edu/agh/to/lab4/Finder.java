@@ -2,12 +2,14 @@ package pl.edu.agh.to.lab4;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Finder {
     private final Collection<Person> allPersons;
 
     private final Map<String, Collection<Prisoner>> allPrisons;
+
 
     public Finder(Collection<Person> allPersons, Map<String, Collection<Prisoner>> allPrisons) {
         this.allPersons = allPersons;
@@ -31,7 +33,7 @@ public class Finder {
         }
 
         for (Person person : allPersons) {
-            if (person.getAge() > 18 && person.getFirstname().equals(name)) {
+            if (person.canBeSuspect() && person.getFirstname().equals(name)) {
                 suspectedPersons.add(person);
             }
         }
