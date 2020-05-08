@@ -23,6 +23,10 @@ public abstract class Suspect {
         return age;
     }
 
+    public String getFullName() {
+        return firstName + " " + surName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

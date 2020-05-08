@@ -1,23 +1,16 @@
 package pl.edu.agh.to.lab4;
 
-public class Person {
-    private final String firstname;
-
-    private final String lastname;
-
-    private final int age;
+public class Person extends Suspect {
 
     public Person(String firstname, String lastname, int age) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.age = age;
+        super(firstname, lastname, age);
     }
 
-    public String getFirstname() { return firstname; }
+    public String getFirstname() { return super.getFirstName(); }
 
-    public String getLastname() { return lastname; }
+    public String getLastname() { return super.getSurName(); }
 
-    public String getFullname() { return firstname + " " + lastname; }
+    public String getFullname() { return super.getFullName(); }
 
-    public int getAge() { return age; }
+    public int getAge() { return super.getAge(); }
 }
