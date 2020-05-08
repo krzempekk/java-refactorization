@@ -21,7 +21,7 @@ public class Finder {
 
         for (Iterator<Suspect> it = compositeAggregate.iterator(); it.hasNext();) {
             Suspect suspect = it.next();
-            if(searchStrategy.filter(suspect)) {
+            if(searchStrategy.filter(suspect) && suspect.canBeSuspect()) {
                 suspectedPeople.add(suspect);
             }
         }
