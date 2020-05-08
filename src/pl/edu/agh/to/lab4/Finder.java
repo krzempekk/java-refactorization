@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Finder {
+
     private final Collection<Person> allPersons;
 
     private final Map<String, Collection<Prisoner>> allPrisons;
@@ -27,7 +28,11 @@ public class Finder {
         this.compositeAggregate.add(prisonersDatabase);
     }
 
-    public void displayAllSuspectsWithName(String name) {
+    public void displayAllSuspectsWithName(String name, int age) {
+        CompositeSearchStrategy searchStrategy = new CompositeSearchStrategy();
+        searchStrategy.addStrategy(new NameSearchStrategy(name));
+        searchStrategy.addStrategy(new AgeSearchStrategy(age));
+
         ArrayList<Suspect> suspectedPeople = new ArrayList<Suspect>();
 
 
@@ -37,12 +42,10 @@ public class Finder {
                 suspectedPeople.add(prisoner);
             }
         }
-        
         System.out.println("Znalazlem " + suspectedPeople.size() + " pasujacych podejrzanych!");
 
         for (Suspect suspect: suspectedPeople) {
             System.out.println(suspect.getFullName());
         }
-
     }
 }
