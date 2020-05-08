@@ -25,6 +25,8 @@ public class Prisoner extends Suspect {
         return judgementYear + senteceDuration >= getCurrentYear();
     }
 
+    public String getFullname() { return name + " " + surname; }
+
     static public int getCurrentYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }

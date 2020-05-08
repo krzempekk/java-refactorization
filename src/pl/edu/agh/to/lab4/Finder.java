@@ -15,16 +15,16 @@ public class Finder {
     }
 
     public Finder(PersonDataProvider personDataProvider, PrisonersDatabase prisonersDatabase) {
-        this(personDataProvider.getAllCracovCitizens(), prisonersDatabase.findAll());
+        this(personDataProvider.getAllCracowCitizens(), prisonersDatabase.findAll());
     }
 
     public void displayAllSuspectsWithName(String name) {
         ArrayList<Prisoner> suspectedPrisoners = new ArrayList<Prisoner>();
         ArrayList<Person> suspectedPersons = new ArrayList<Person>();
 
-        for (Collection<Prisoner> prisonerCollection : allPrisoners.values()) {
-            for (Prisoner prisoner : prisonerCollection) {
-                if (!prisoner.canBeSuspect() && prisoner.name.equals(name)) {
+        for (Collection<Prisoner> prisonerCollection: allPrisoners.values()) {
+            for (Prisoner prisoner: prisonerCollection) {
+                if (prisoner.canBeSuspect() && prisoner.name.equals(name)) {
                     suspectedPrisoners.add(prisoner);
                 }
                 if (suspectedPrisoners.size() >= 10) {
@@ -47,15 +47,15 @@ public class Finder {
             }
         }
 
-        int t = suspectedPrisoners.size() + suspectedPersons.size();
-        System.out.println("Znalazlem " + t + " pasujacych podejrzanych!");
+        int suspectsCount = suspectedPrisoners.size() + suspectedPersons.size();
+        System.out.println("Znalazlem " + suspectsCount + " pasujacych podejrzanych!");
 
-        for (Prisoner n : suspectedPrisoners) {
-            System.out.println(PrisonersDatabase.render(n));
+        for (Prisoner prisoner: suspectedPrisoners) {
+            System.out.println(prisoner.getFullname());
         }
 
-        for (Person p : suspectedPersons) {
-            System.out.println(p.getFullname());
+        for (Person person: suspectedPersons) {
+            System.out.println(person.getFullname());
         }
     }
 }
