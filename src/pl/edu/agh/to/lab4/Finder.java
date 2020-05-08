@@ -10,47 +10,46 @@ public class Finder {
 
     private final Map<String, Collection<Prisoner>> allPrisons;
 
+    PersonDataProvider personDataProvider;
+    PrisonersDatabase prisonersDatabase;
+
 
     public Finder(Collection<Person> allPersons, Map<String, Collection<Prisoner>> allPrisons) {
         this.allPersons = allPersons;
         this.allPrisons = allPrisons;
+        this.personDataProvider = null;
+        this.prisonersDatabase = null;
     }
 
     public Finder(PersonDataProvider personDataProvider, PrisonersDatabase prisonersDatabase) {
         this(personDataProvider.getAllCracowCitizens(), prisonersDatabase.findAll());
+        this.prisonersDatabase = prisonersDatabase;
+        this.personDataProvider = personDataProvider;
     }
 
     public void displayAllSuspectsWithName(String name) {
-        ArrayList<Prisoner> suspectedPrisoners = new ArrayList<Prisoner>();
-        ArrayList<Person> suspectedPersons = new ArrayList<Person>();
+        ArrayList<Suspect> suspectedPeople = new ArrayList<Suspect>();
 
-        for (Collection<Prisoner> prisonerCollection: allPrisons.values()) {
-            for (Prisoner prisoner: prisonerCollection) {
-                if (!prisoner.canBeSuspect() && prisoner.getFirstName().equals(name)) {
-                    suspectedPrisoners.add(prisoner);
-                }
+        for (Iterator<Suspect> it = personDataProvider.iterator(); it.hasNext();) {
+            Suspect person = it.next();
+            if (person.canBeSuspect() && person.getFirstName().equals(name)) {
+                suspectedPeople.add(person);
             }
         }
 
-        for (Person person : allPersons) {
-<<<<<<< HEAD
-            if (person.canBeSuspect() && person.getFirstname().equals(name)) {
-=======
-            if (person.getAge() > 18 && person.getFirstName().equals(name)) {
->>>>>>> 81eccf0ce55becd4591ed9fefc86a3172cd1ab7d
-                suspectedPersons.add(person);
+        for (Iterator<Suspect> it = prisonersDatabase.iterator(); it.hasNext();) {
+            Suspect prisoner = it.next();
+            if (!prisoner.canBeSuspect() && prisoner.getFirstName().equals(name)) {
+                suspectedPeople.add(prisoner);
             }
         }
 
-        int suspectsCount = suspectedPrisoners.size() + suspectedPersons.size();
-        System.out.println("Znalazlem " + suspectsCount + " pasujacych podejrzanych!");
 
-        for (Prisoner prisoner: suspectedPrisoners) {
-            System.out.println(prisoner.getFullName());
+        System.out.println("Znalazlem " + suspectedPeople.size() + " pasujacych podejrzanych!");
+
+        for (Suspect suspect: suspectedPeople) {
+            System.out.println(suspect.getFullName());
         }
 
-        for (Person person: suspectedPersons) {
-            System.out.println(person.getFullName());
-        }
     }
 }

@@ -2,7 +2,7 @@ package pl.edu.agh.to.lab4;
 
 import java.util.*;
 
-public class PrisonersDatabase {
+public class PrisonersDatabase implements SuspectAggregate {
 
     private final Map<String, Collection<Prisoner>> prisons = new HashMap<>();
 

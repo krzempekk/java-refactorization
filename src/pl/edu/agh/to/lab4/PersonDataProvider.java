@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class PersonDataProvider {
+public class PersonDataProvider implements SuspectAggregate {
 
     private final Collection<Person> cracowCitizens = new ArrayList<>();
 
@@ -26,7 +26,7 @@ public class PersonDataProvider {
         return cracowCitizens;
     }
 
-//    public Iterator<Suspect> iterator() {
-//        return cracowCitizens.iterator();
-//    }
+    public Iterator<Suspect> iterator() {
+        return new ArrayList<Suspect>(this.cracowCitizens).iterator();
+    }
 }
