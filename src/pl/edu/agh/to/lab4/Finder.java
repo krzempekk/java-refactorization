@@ -6,28 +6,19 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Finder {
-    private final Collection<Person> allPersons;
-
-    private final Map<String, Collection<Prisoner>> allPrisons;
-
     PersonDataProvider personDataProvider;
     PrisonersDatabase prisonersDatabase;
 
-
-    public Finder(Collection<Person> allPersons, Map<String, Collection<Prisoner>> allPrisons) {
-        this.allPersons = allPersons;
-        this.allPrisons = allPrisons;
-        this.personDataProvider = null;
-        this.prisonersDatabase = null;
-    }
-
     public Finder(PersonDataProvider personDataProvider, PrisonersDatabase prisonersDatabase) {
-        this(personDataProvider.getAllCracowCitizens(), prisonersDatabase.findAll());
         this.prisonersDatabase = prisonersDatabase;
         this.personDataProvider = personDataProvider;
     }
 
-    public void displayAllSuspectsWithName(String name) {
+    public void displayAllSuspectsWithName(String name, int age) {
+        CompositeSearchStrategy searchStrategy = new CompositeSearchStrategy();
+        searchStrategy.addStrategy(new NameSearchStrategy(name));
+        searchStrategy.addStrategy(new AgeSearchStrategy(age));
+
         ArrayList<Suspect> suspectedPeople = new ArrayList<Suspect>();
 
         for (Iterator<Suspect> it = personDataProvider.iterator(); it.hasNext();) {
@@ -44,12 +35,10 @@ public class Finder {
             }
         }
 
-
         System.out.println("Znalazlem " + suspectedPeople.size() + " pasujacych podejrzanych!");
 
         for (Suspect suspect: suspectedPeople) {
             System.out.println(suspect.getFullName());
         }
-
     }
 }
