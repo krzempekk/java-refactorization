@@ -34,7 +34,4 @@ public class PrisonersDatabase {
         prisons.get(category).add(prisoner);
     }
 
-    public static String getPrisonerFullname(Prisoner prisoner) {
-        return prisoner.name + " " + prisoner.surname;
-    }
 }
